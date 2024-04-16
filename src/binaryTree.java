@@ -41,27 +41,28 @@ public class binaryTree<T extends Comparable<T>>{
         //creates a node with the data passed in to be added to the BST
        Node<T> p = new Node<>(data);
        //checks to see if the data is in the BST tree already
-       if(search(this.root, p) == false ){
+       if(searchH(this.root, p) == false ){
            this.root = searchN(this.root, p);
        }else{
-           System.out.println("Already in there!");
+           System.out.println(data+" is already in there!");
        }
     }
 
     public void delete(T data){
-        deleteH(this.root, data );
+        Node<T> dataToDelete = new Node<>(data);
+
+        if(searchH(this.root, dataToDelete) == false ) {
+           System.out.println("Data " +data +" not in the BST!");
+        }else{
+            deleteH(this.root, data);
+            System.out.println("deleted " + data);
+        }
     }
 
     public  Node deleteH(Node current,T dataD){
         Node<T> dataToDelete = new Node<>(dataD);
-
-        if(search(current, dataToDelete) == false ) {
-
-
-        }else {
             if (current == null) {
                 return current;
-
             }else if (dataToDelete.compareTo(current) < 0) {
                 // go left
                 current.left =  deleteH(current.left, dataD);
@@ -69,8 +70,7 @@ public class binaryTree<T extends Comparable<T>>{
                 //go right
                 current.right = deleteH(current.right, dataD);
             }else{
-                //node not found
-
+                //node found
                 //checking to see if node is independent leaf
                 if(current.left == null|| current.right == null){
                     current = null;
@@ -82,7 +82,6 @@ public class binaryTree<T extends Comparable<T>>{
                     current.left = deleteH(current.left, dataD);
                 }
             }
-        }
         return null;
     }
     public Node sucessor(Node current){
@@ -102,8 +101,15 @@ public class binaryTree<T extends Comparable<T>>{
         return current;
     }
 
-
-    public boolean search(Node root, Node data){
+public void search(T data){
+        Node d = new Node<>(data);
+        if(searchH(this.root,d)){
+            System.out.println("Data "+data+" found in BST!");
+        }else{
+            System.out.println("Data "+data+" not found in BST");
+        }
+}
+    public boolean searchH(Node root, Node data){
         //returns false if there is no data in the binary tree
         if(root == null){
             return false;
@@ -113,10 +119,10 @@ public class binaryTree<T extends Comparable<T>>{
             //data < root.Data
         }else if(data.compareTo(root) < 0){
             // go left
-            return search(root.left,data);
+            return searchH(root.left,data);
         }else{
             //go right
-            return search(root.right, data);
+            return searchH(root.right, data);
         }
 
     }

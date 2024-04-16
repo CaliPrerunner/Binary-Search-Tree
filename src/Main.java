@@ -2,8 +2,6 @@ public class Main {
     public static void main(String[] args) {
 
         binaryTree test = new binaryTree();
-        binaryTree test2 = new binaryTree();
-
         test.insert(10);
         test.insert(5);
         test.insert(15);
@@ -12,15 +10,15 @@ public class Main {
         test.insert(25);
         test.insert(8);
 
-        test2.insert(4);
-        test2.insert(3);
-        test2.insert(2);
-        test2.insert(1);
 
-      System.out.println("Printing tree using the in-order traversal method");
+        //*******test cases of methods working***********
 
 
-      //test.delete( 8);
+        System.out.println("searching for 10");
+        test.search(10 );
+        System.out.println("Searching for 11");
+        test.search(11 );
+
 
         System.out.println("Printing tree using the in-order traversal method");
         test.inOrderTraverse();
@@ -30,6 +28,15 @@ public class Main {
 
         System.out.println("\nPrinting tree using the in post-order traversal method");
         test.postOrderTraverse();
+
+        //here to show that this method checks for items that are not in the BST
+        System.out.println("Deleting 22, which is not in BST");
+        test.delete( 22);
+        //showing how the BST can delete nodes
+        System.out.println("Deleting 8,is in BST");
+        test.delete( 8);
+
+
 
 int x =0;
     }
