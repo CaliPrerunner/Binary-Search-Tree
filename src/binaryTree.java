@@ -122,8 +122,6 @@ public class binaryTree<T extends Comparable<T>>{
     }
 
     public Node searchN(Node current, Node data){
-
-
         if(current == null){
             current = data;
             return current;
@@ -152,8 +150,8 @@ public class binaryTree<T extends Comparable<T>>{
     public void preOrderTraverseH(Node current){
         if (current != null) {
             System.out.print(current.Data+ " ");
-            inOrderTraverseH(current.left);
-            inOrderTraverseH(current.right);
+            preOrderTraverseH(current.left);
+            preOrderTraverseH(current.right);
 
         }
     }
@@ -162,8 +160,8 @@ public class binaryTree<T extends Comparable<T>>{
     }
     public void postOrderTraverseH(Node current){
         if (current != null) {
-            inOrderTraverseH(current.left);
-            inOrderTraverseH(current.right);
+            postOrderTraverseH(current.left);
+            postOrderTraverseH(current.right);
             System.out.print(current.Data+ " ");
 
         }
