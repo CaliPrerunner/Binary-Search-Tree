@@ -48,7 +48,11 @@ public class binaryTree<T extends Comparable<T>>{
        }
     }
 
-    public  Node delete(Node current,T dataD){
+    public void delete(T data){
+        deleteH(this.root, data );
+    }
+
+    public  Node deleteH(Node current,T dataD){
         Node<T> dataToDelete = new Node<>(dataD);
 
         if(search(current, dataToDelete) == false ) {
@@ -60,10 +64,10 @@ public class binaryTree<T extends Comparable<T>>{
 
             }else if (dataToDelete.compareTo(current) < 0) {
                 // go left
-                current.left =  delete(current.left, dataD);
+                current.left =  deleteH(current.left, dataD);
             } else if (dataToDelete.compareTo(current) > 0) {
                 //go right
-                current.right = delete(current.right, dataD);
+                current.right = deleteH(current.right, dataD);
             }else{
                 //node not found
 
@@ -72,10 +76,10 @@ public class binaryTree<T extends Comparable<T>>{
                     current = null;
                 }else if (current.right != null){
                     current = sucessor(current);
-                    current.right = delete(current.right, dataD);
+                    current.right = deleteH(current.right, dataD);
                 }else { //find the predecesor to replace this node
                     current = pre(current);
-                    current.left = delete(current.left, dataD);
+                    current.left = deleteH(current.left, dataD);
                 }
             }
         }
@@ -135,21 +139,37 @@ public class binaryTree<T extends Comparable<T>>{
 
 
     //Traverses through the array from smallest (left most) to largest (right most)
+    public void inOrderTraverseH(Node current){
+        if (current != null) {
+            inOrderTraverseH(current.left);
+            System.out.print(current.Data+ " ");
+            inOrderTraverseH(current.right);
+        }
+    }
     public void inOrderTraverse(){
+        inOrderTraverseH(this.root);
+    }
+    public void preOrderTraverseH(Node current){
+        if (current != null) {
+            System.out.print(current.Data+ " ");
+            inOrderTraverseH(current.left);
+            inOrderTraverseH(current.right);
 
-
-
+        }
     }
     public void preOrderTraverse(){
-        // root, left then right
-        /*
-       go all the way to the left and then go to the right, when you get to the root, the RLR resets to go back to the last left
-       value of that
-         */
+        preOrderTraverseH(this.root);
+    }
+    public void postOrderTraverseH(Node current){
+        if (current != null) {
+            inOrderTraverseH(current.left);
+            inOrderTraverseH(current.right);
+            System.out.print(current.Data+ " ");
 
+        }
     }
     public void postOrderTraverse(){
-
+        postOrderTraverseH(this.root);
     }
 
 }
