@@ -28,7 +28,6 @@ public class binaryTree<T extends Comparable<T>>{
             this.Data = data;
         }
 
-
         public int compareTo(Node<T> o) {
             return this.Data.compareTo(o.Data);
         }
@@ -48,17 +47,20 @@ public class binaryTree<T extends Comparable<T>>{
        }
     }
 
+    //main method that will delete the conents of the BST
     public void delete(T data){
         Node<T> dataToDelete = new Node<>(data);
 
-        if(searchH(this.root, dataToDelete) == false ) {
-           System.out.println("Data " +data +" not in the BST!");
-        }else{
+        if(searchH(this.root, dataToDelete)) {
             deleteH(this.root, data);
             System.out.println("deleted " + data);
+            System.out.println("Data " +data +" not in the BST!");
+        }else{
+            System.out.println("Data " +data +" not in the BST!");
         }
     }
 
+    //delete helper method that has the recursive logic to delete
     public  Node deleteH(Node current,T dataD){
         Node<T> dataToDelete = new Node<>(dataD);
             if (current == null) {
@@ -72,18 +74,22 @@ public class binaryTree<T extends Comparable<T>>{
             }else{
                 //node found
                 //checking to see if node is independent leaf
-                if(current.left == null|| current.right == null){
+                if(current.left == null && current.right == null){
                     current = null;
                 }else if (current.right != null){
-                    current = sucessor(current);
+                    //some data in the right node of the node you want to delete
+                     current = sucessor(current);
                     current.right = deleteH(current.right, dataD);
-                }else { //find the predecesor to replace this node
-                    current = pre(current);
-                    current.left = deleteH(current.left, dataD);
+
+                }else {
+                    //find the predecesor to replace this node
+                  current = pre(current);
+                  current.left = deleteH(current.left, dataD);
                 }
             }
-        return null;
+        return current;
     }
+
     public Node sucessor(Node current){
         //find the least value below the right child of the root node
         current = current.right;
@@ -101,6 +107,7 @@ public class binaryTree<T extends Comparable<T>>{
         return current;
     }
 
+    //main search method will print out to the console
 public void search(T data){
         Node d = new Node<>(data);
         if(searchH(this.root,d)){
@@ -109,6 +116,8 @@ public void search(T data){
             System.out.println("Data "+data+" not found in BST");
         }
 }
+
+//search helper will return false if data not in BST and true if in BST
     public boolean searchH(Node root, Node data){
         //returns false if there is no data in the binary tree
         if(root == null){
@@ -127,6 +136,7 @@ public void search(T data){
 
     }
 
+    //searches and returns the node
     public Node searchN(Node current, Node data){
         if(current == null){
             current = data;
