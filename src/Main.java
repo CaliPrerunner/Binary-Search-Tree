@@ -15,13 +15,13 @@ public class Main {
         //*******test cases of methods working***********
 
 
-        System.out.println("searching for 10");
+        System.out.println("Aearching for 10");
         test.search(10 );
         System.out.println("Searching for 11");
         test.search(11 );
 
 
-        System.out.println("Printing tree using the in-order traversal method");
+        System.out.println("\nPrinting tree using the in-order traversal method");
         test.inOrderTraverse();
 
         System.out.println("\nPrinting tree using the in pre-order traversal method");
@@ -31,7 +31,7 @@ public class Main {
         test.postOrderTraverse();
 
         //here to show that this method checks for items that are not in the BST
-        System.out.println("\nDeleting 22, which is not in BST");
+        System.out.println("\n\nDeleting 22, which is not in BST");
         test.delete( 22);
         //showing how the BST can delete nodes
         System.out.println("Deleting 8,is in BST");
@@ -41,6 +41,5 @@ public class Main {
         test.delete( 15);
         System.out.println("Printing tree without 15");
         test.inOrderTraverse();
-
     }
 }
