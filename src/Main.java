@@ -36,10 +36,11 @@ public class Main {
         //showing how the BST can delete nodes
         System.out.println("Deleting 8,is in BST");
         test.delete( 8);
-        System.out.println("Printing tree using the in-order traversal method");
+        System.out.println("Printing tree without 8");
+        test.inOrderTraverse();
+        test.delete( 15);
+        System.out.println("Printing tree without 15");
         test.inOrderTraverse();
 
-
-int x =0;
     }
 }
